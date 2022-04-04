@@ -1,0 +1,33 @@
+body {
+      background-color: rgb(255, 150, 178);
+      display: flex;
+      justify-content: center;
+}
+
+.clock-div {
+      border: red 1px solid;
+      width: 1000px;
+      height: 600px;
+      margin: 12.5%;
+}
+
+.clock-text-div {
+      border: blue 1px solid;
+      width: 80%;
+      float: left;
+      height: 100%;
+}
+
+.clock-text {
+      text-align: center;
+      font-size: 200px;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.clock-baterry-div {
+      border: blue 1px solid;
+      float: right;
+      width: 19%;
+      height: 500px;
+}
