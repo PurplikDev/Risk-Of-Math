@@ -1,0 +1,29 @@
+.item-list {
+      display: flex;
+      flex-direction: row;
+      
+      border: 2.5px solid black;
+      
+      width: auto;
+      height: 90px;
+}
+
+.draggable-item {
+      width: 80px;
+      height: 80px;
+
+      text-align: center;
+      
+      margin: 5px;
+      cursor: move;
+}
+
+.moving {
+      opacity: 0.5;
+}
+
+.item {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+}

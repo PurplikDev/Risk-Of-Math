@@ -4,17 +4,73 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link href="mainStyle.css" rel="stylesheet">
-      <title>The Clock</title>
+      
+      
+      <link href="/CSS/mainStyle.css" rel="stylesheet">
+      <link href="/CSS/itemStyle.css" rel="stylesheet">
+
+      <title>Risk of Rain 2 Calculator</title>
 </head>
-<body onload="gameInitiator()">
-      <div class="clock-div">
-            <div class="clock-text-div">
-                  <h1 class="clock-text" id="clock-text"></h1>
-            </div>
-            <div class="clock-baterry-div"></div>
+<body>
+      <label for="character-select">Select your survivor</label>      <select id="character-select" class="character-select">
+            <option id="commando"         class="select-commando        character-select-option">     Commando    </option>
+            <option id="huntress"         class="select-huntress        character-select-option">     Huntress    </option>
+            <option id="bandit"           class="select-bandit          character-select-option">     Bandit      </option>
+            <option id="mult"             class="select-mult            character-select-option">     MUL-T       </option>
+            <option id="engineer"         class="select-engineer        character-select-option">     Engineer    </option>
+            <option id="artificer"        class="select-artificer       character-select-option">     Artificer   </option>
+            <option id="mercenary"        class="select-mercenary       character-select-option">     Mercenary   </option>
+            <option id="rex"              class="select-rex             character-select-option">     Rex         </option>
+            <option id="loader"           class="select-loader          character-select-option">     Loader      </option>
+            <option id="acrid"            class="select-acrid           character-select-option">     Acrid       </option>
+            <option id="captain"          class="select-captain         character-select-option">     Captain     </option>
+            <option id="railgunner"       class="select-railgunner      character-select-option">     Railgunner  </option>
+            <option id="voidfiend"        class="select-voidfiend       character-select-option">     Void Fiend  </option>
+            <option id="heretic"          class="select-heretic         character-select-option">     Heretic     </option>
+            <option id="mithrix"          class="select-mithrix         character-select-option">     Mithrix     </option>
+            <option id="scavenger"        class="select-scavenger       character-select-option">     Scavenger   </option>
+      </select>
+
+
+      <div>
+            <h1 id="character-name"></h1>
+            <hr class="character-stats-hr">
+            <img id="character_image">
+            <h2 id="character-type"></h2>
+            <h3 id="character-health"></h3>
+            <h3 id="character-damage"></h3>
+            <h3 id="character-speed"></h3>
+            <h3 id="character-armor"></h3>
       </div>
 
-      <script src="script.js"></script>
+      <div>
+            <h1 id="character-name"></h1>
+            <hr class="character-stats-hr">
+            <img id="character_image">
+            <h2 id="character-type"></h2>
+            <h3 id="character-health"></h3>
+            <h3 id="character-damage"></h3>
+            <h3 id="character-speed"></h3>
+            <h3 id="character-armor"></h3>
+      </div>
+
+
+
+      <h1>Inventory</h1>
+      <div class="item-list" id="player_items">
+            
+      </div>
+
+
+
+      <h1>Item List</h1>
+      <div class="item-list" id="site_items">
+            <div class="draggable-item" draggable="true"><img class="item common" src="item_icons/common/soldier_syringe.png"></div>
+            <div class="draggable-item" draggable="true"><img class="item common" src="item_icons/common/repulsion_armor_plate.png"></div>
+      </div>
+
+      <script src="/JS/characters.js"></script>
+      <script src="/JS/items.js"></script>
+      <script src="/JS/mainScript.js" defer></script>
 </body>
 </html>
