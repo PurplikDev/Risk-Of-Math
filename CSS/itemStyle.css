@@ -1,29 +1,29 @@
 .common {
-      background-image: url("/item_icons/item_backgrounds/common.png");
+      background-image: url("../item_icons/item_backgrounds/common.png");
       background-size: cover;
 }
 
 .uncommon {
-      background-image: url("/item_icons/item_backgrounds/uncommon.png");
+      background-image: url("../item_icons/item_backgrounds/uncommon.png");
       background-size: cover;
 }
 
 .legendary {
-      background-image: url("/item_icons/item_backgrounds/legendary.png");
+      background-image: url("../item_icons/item_backgrounds/legendary.png");
       background-size: cover;
 }
 
 .boss {
-      background-image: url("/item_icons/item_backgrounds/boss.png");
+      background-image: url("../item_icons/item_backgrounds/boss.png");
       background-size: cover;
 }
 
 .lunar {
-      background-image: url("/item_icons/item_backgrounds/lunar.png");
+      background-image: url("../item_icons/item_backgrounds/lunar.png");
       background-size: cover;
 }
 
 .void {
-      background-image: url("/item_icons/item_backgrounds/void.png");
+      background-image: url("../item_icons/item_backgrounds/void.png");
       background-size: cover;
 }
