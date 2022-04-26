@@ -27,3 +27,8 @@
       background-image: url("../itemIcons/itemBackgrounds/void.png");
       background-size: cover;
 }
+
+.debug {
+      background-image: url("../itemIcons/debugIcons/background.png");
+      background-size: cover;
+}

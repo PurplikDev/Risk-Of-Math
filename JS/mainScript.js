@@ -16,28 +16,23 @@ character_input.onchange = showCharacter;
 
 ////////////////////////////////////////////////////////////////////
 
-if (window.addEventListener) {
-      window.addEventListener('load', generateItems);
-   } else if (window.attachEvent) {
-      window.attachEvent('onload', generateItems);
-   } else { 
-      window.onload = generateItems;
-}
+generateItems();
 
 function generateItems() {
-      for(i = 0; i < items.length; i++) {
-            const new_item = document.createElement("div");
-                  new_item.classList.add("draggable-item");
-                  new_item.draggable = true;
-            
-            const new_item_image = document.createElement("img");
-                  new_item_image.classList.add("item");
-                  new_item_image.classList.add(items[i].itemRarity);
-                  new_item_image.src = "itemIcons/" + items[i].itemRarity + "/" + items[i].itemIcon;
+    for(i = 0; i < items.length; i++) {
+          const new_item = document.createElement("div");
+                new_item.classList.add("draggable-item");
+                new_item.draggable = true;
+          
+          const new_item_image = document.createElement("img");
+                new_item_image.classList.add("item");
+                new_item_image.classList.add(items[i].itemRarity);
+                new_item_image.classList.add(items[i].itemID);
+                new_item_image.src = "itemIcons/" + items[i].itemRarity + "/" + items[i].itemIcon;
 
-            site_items.appendChild(new_item);
-            new_item.appendChild(new_item_image);
-      }
+          site_items.appendChild(new_item);
+          new_item.appendChild(new_item_image);
+    }
 }
 
 ////////////////////////////////////////////////////////////////////
@@ -45,7 +40,10 @@ function generateItems() {
 const draggable_item = document.querySelectorAll(".draggable-item");
 const item_lists = document.querySelectorAll(".item-list");
 
+console.log(draggable_item.length);
+
 draggable_item.forEach(item => {
+
       item.addEventListener("dragstart", () => {
             item.classList.add("moving")
       })

@@ -4,8 +4,13 @@
       
       border: 2.5px solid black;
       
+      min-width: 95px;
       width: auto;
-      height: 90px;
+      max-width: 1260px;
+
+      min-height: 90px;
+
+      flex-wrap: wrap;
 }
 
 .draggable-item {
