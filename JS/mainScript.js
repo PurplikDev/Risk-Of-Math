@@ -33,7 +33,7 @@ function generateItems() {
             const new_item_image = document.createElement("img");
                   new_item_image.classList.add("item");
                   new_item_image.classList.add(items[i].itemRarity);
-                  new_item_image.src = "item_icons/" + items[i].itemRarity + "/" + items[i].itemIcon;
+                  new_item_image.src = "itemIcons/" + items[i].itemRarity + "/" + items[i].itemIcon;
 
             site_items.appendChild(new_item);
             new_item.appendChild(new_item_image);
@@ -95,7 +95,7 @@ function showCharacter() {
 function outputStats(CharacterID) {
       character_name_display.innerText    = CharacterID.name;
       character_type_display.innerText    = CharacterID.type;
-      character_image_display.src         = "character_icons/" + CharacterID.name + ".png" //I have to do this monstrosity be cause just CharacterID would use the object, not the ID/word itself
+      character_image_display.src         = "characterIcons/" + CharacterID.name + ".png" //I have to do this monstrosity be cause just CharacterID would use the object, not the ID/word itself
       character_health_display.innerHTML    = "Health: " + CharacterID.health;
       character_damage_display.innerText    = "Damage: " + JSON.stringify(CharacterID.damage);
       character_speed_display.innerText    = "Speed: " + JSON.stringify(CharacterID.movement_speed) + " m/s";
