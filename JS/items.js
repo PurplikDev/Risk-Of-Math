@@ -3,7 +3,11 @@ const items = [
             itemID: "repulsion_armor_plate",
             itemName: "Repulsion Armor Plate",
             itemIcon: "repulsion_armor_plate.png",
-            itemRarity: "common"
+            itemRarity: "common",
+
+            stats: {
+                  
+            }
       },
 
       {

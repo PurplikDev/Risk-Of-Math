@@ -9,6 +9,7 @@ const character_speed_display       = document.getElementById("character-speed")
 const character_armor_display       = document.getElementById("character-armor");
 
 const site_items = document.getElementById("site_items");
+const player_items = document.getElementById("player_items");
 
 ////////////////////////////////////////////////////////////////////
 
@@ -63,39 +64,56 @@ item_lists.forEach(item_list => {
 
 ////////////////////////////////////////////////////////////////////
 
-function showCharacter() {
+function getCharacterID() {
 
       let selected_character = character_input.options[character_input.selectedIndex].id;
       
       switch(selected_character) {
-            case "commando":        outputStats(commando);       break;
-            case "huntress":        outputStats(huntress);       break;
-            case "bandit":          outputStats(bandit);         break;
-            case "mult":            outputStats(mult);           break;
-            case "engineer":        outputStats(engineer);       break;
-            case "artificer":       outputStats(artificer);      break;
-            case "mercenary":       outputStats(mercenary);      break;
-            case "rex":             outputStats(rex);            break;
-            case "loader":          outputStats(loader);         break;
-            case "acrid":           outputStats(acrid);          break;
-            case "captain":         outputStats(captain);        break;
-            case "railgunner":      outputStats(railgunner);     break;
-            case "voidfiend":       outputStats(voidfiend);      break;
-            case "heretic":         outputStats(heretic);        break;
-            case "mithrix":         outputStats(mithrix);        break;
-            case "scavenger":       outputStats(scavenger);      break;
+            case "commando":        return commando;       break;
+            case "huntress":        return huntress;       break;
+            case "bandit":          return bandit;         break;
+            case "mult":            return mult;           break;
+            case "engineer":        return engineer;       break;
+            case "artificer":       return artificer;      break;
+            case "mercenary":       return mercenary;      break;
+            case "rex":             return rex;            break;
+            case "loader":          return loader;         break;
+            case "acrid":           return acrid;          break;
+            case "captain":         return captain;        break;
+            case "railgunner":      return railgunner;     break;
+            case "voidfiend":       return voidfiend;      break;
+            case "heretic":         return heretic;        break;
+            case "mithrix":         return mithrix;        break;
+            case "scavenger":       return scavenger;      break;
 
             default: console.log("unknown-character");
       }
 
 }
 
-function outputStats(CharacterID) {
+function outputStats() {
+
+      let CharacterID = getCharacterID()
+
       character_name_display.innerText    = CharacterID.name;
       character_type_display.innerText    = CharacterID.type;
       character_image_display.src         = "characterIcons/" + CharacterID.name + ".png" //I have to do this monstrosity be cause just CharacterID would use the object, not the ID/word itself
-      character_health_display.innerHTML    = "Health: " + CharacterID.health;
-      character_damage_display.innerText    = "Damage: " + JSON.stringify(CharacterID.damage);
-      character_speed_display.innerText    = "Speed: " + JSON.stringify(CharacterID.movement_speed) + " m/s";
-      character_armor_display.innerText    = "Armor: " + JSON.stringify(CharacterID.armor);
+      character_health_display.innerHTML  = "Health: " + CharacterID.health;
+      character_damage_display.innerText  = "Damage: " + JSON.stringify(CharacterID.damage);
+      character_speed_display.innerText   = "Speed: " + JSON.stringify(CharacterID.movement_speed) + " m/s";
+      character_armor_display.innerText   = "Armor: " + JSON.stringify(CharacterID.armor);
 }
+
+////////////////////////////////////////////////////////////////////
+
+function updateStats() {
+
+
+      character_type_display.innerText    = CharacterID.type;
+      character_health_display.innerHTML  = "Health: " + (CharacterID.health + 1);
+      character_damage_display.innerText  = "Damage: " + (CharacterID.damage + 1);
+      character_speed_display.innerText   = "Speed: " +  (CharacterID.movement_speed + 1); + " m/s";
+      character_armor_display.innerText   = "Armor: " + (CharacterID.armor + 1);
+}
+
+player_items.onchange = updateStats();
