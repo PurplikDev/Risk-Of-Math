@@ -115,5 +115,3 @@ function updateStats() {
       character_speed_display.innerText   = "Speed: " +  (CharacterID.movement_speed + 1); + " m/s";
       character_armor_display.innerText   = "Armor: " + (CharacterID.armor + 1);
 }
-
-player_items.onchange = updateStats();
