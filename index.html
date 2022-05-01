@@ -43,6 +43,14 @@
             <h3 id="character-armor"></h3>
       </div>
 
+      <div>
+            <h2 id="bleed-chance"></h2>
+            <h3 id="character-health"></h3>
+            <h3 id="character-damage"></h3>
+            <h3 id="character-speed"></h3>
+            <h3 id="character-armor"></h3>
+      </div>
+
       <h1>Inventory</h1>
       <div class="item-list playerInventory" id="player_items">
             
@@ -52,12 +60,16 @@
 
       <h1>Item List</h1>
       <div class="item-list" id="site_items">
-            <div class="draggable-item" draggable="true"><img class="item debug" src="itemIcons/debugIcons/item.png"></div>
+            <div class="draggable-item" id="debug" draggable="true"><img class="item debug" src="itemIcons/debugIcons/item.png"></div>
       </div>
       
 
       <script src="JS/characters.js"></script>
       <script src="JS/items.js"></script>
       <script src="JS/mainScript.js"></script>
+      
+      <script>
+            defaultStats()
+      </script>
 </body>
 </html>

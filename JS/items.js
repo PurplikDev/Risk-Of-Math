@@ -6,7 +6,7 @@ const items = [
             itemRarity: "common",
 
             stats: {
-                  
+                  armor: 5
             }
       },
 
@@ -14,7 +14,12 @@ const items = [
             itemID: "mocha",
             itemName: "Mocha",
             itemIcon: "mocha.png",
-            itemRarity: "common"
+            itemRarity: "common",
+
+            stats: {
+                  movement_speed: 0.07,
+                  attack_speed: 0.075
+            }
       },
 
       {
@@ -98,6 +103,8 @@ const items = [
             itemID: "power_elixir",
             itemName: "Power Elixir",
             itemIcon: "power_elixir.png",
-            itemRarity: "common"
+            itemRarity: "common",
+
+            on_death: ""
       }
 ]

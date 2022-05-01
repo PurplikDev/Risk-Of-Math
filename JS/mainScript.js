@@ -8,24 +8,23 @@ const character_damage_display      = document.getElementById("character-damage"
 const character_speed_display       = document.getElementById("character-speed");
 const character_armor_display       = document.getElementById("character-armor");
 
+////////////////////////////////////////////////////////////////////
+
+character_input.onchange = defaultStats;
+
+////////////////////////////////////////////////////////////////////
+
 const site_items = document.getElementById("site_items");
-const player_items = document.getElementById("player_items");
-
-////////////////////////////////////////////////////////////////////
-
-character_input.onchange = outputStats;
-
-////////////////////////////////////////////////////////////////////
 
 generateItems();
 
 function generateItems() {
     for(i = 0; i < items.length; i++) {
-          const new_item = document.createElement("div");
+            const new_item = document.createElement("div");
                 new_item.classList.add("draggable-item");
-                new_item.draggable = true;
+                new_item.setAttribute("id", items[i].itemID);
           
-          const new_item_image = document.createElement("img");
+            const new_item_image = document.createElement("img");
                 new_item_image.classList.add("item");
                 new_item_image.classList.add(items[i].itemRarity);
                 new_item_image.classList.add(items[i].itemID);
@@ -41,24 +40,23 @@ function generateItems() {
 const draggable_item = document.querySelectorAll(".draggable-item");
 const item_lists = document.querySelectorAll(".item-list");
 
-console.log(draggable_item.length);
-
 draggable_item.forEach(item => {
 
       item.addEventListener("dragstart", () => {
-            item.classList.add("moving")
+            item.classList.add("moving");
       })
 
       item.addEventListener("dragend", () => {
-            item.classList.remove("moving")
+            item.classList.remove("moving");
+            itemDetection();
       })
 })
 
 item_lists.forEach(item_list => {
       item_list.addEventListener("dragover", e => {
-            e.preventDefault()
-            const moving_item = document.querySelector(".moving")
-            item_list.appendChild(moving_item)
+            e.preventDefault();
+            const moving_item = document.querySelector(".moving");
+            item_list.appendChild(moving_item);
       })
 })
 
@@ -91,14 +89,14 @@ function getCharacterID() {
 
 }
 
-function outputStats() {
+function defaultStats() {
 
       let CharacterID = getCharacterID()
 
       character_name_display.innerText    = CharacterID.name;
       character_type_display.innerText    = CharacterID.type;
       character_image_display.src         = "characterIcons/" + CharacterID.name + ".png" //I have to do this monstrosity be cause just CharacterID would use the object, not the ID/word itself
-      character_health_display.innerHTML  = "Health: " + CharacterID.health;
+      character_health_display.innerHTML  = CharacterID.health;
       character_damage_display.innerText  = "Damage: " + JSON.stringify(CharacterID.damage);
       character_speed_display.innerText   = "Speed: " + JSON.stringify(CharacterID.movement_speed) + " m/s";
       character_armor_display.innerText   = "Armor: " + JSON.stringify(CharacterID.armor);
@@ -106,12 +104,56 @@ function outputStats() {
 
 ////////////////////////////////////////////////////////////////////
 
+function itemDetection() {
+    
+    defaultStats()
+
+    const player_items = document.getElementById("player_items");
+    const items_in_inventory = player_items.querySelectorAll(".draggable-item");
+
+    console.clear();
+
+    items_in_inventory.forEach(item => {
+
+            switch(item.id) {
+                case "debug":   console.log("debug");   break;
+
+                case "repulsion_armor_plate":   console.log(findItem("repulsion_armor_plate"));   break;
+                case "mocha":                   console.log(findItem("mocha"));                   break;
+                case "topaz_brooch":            console.log(findItem("topaz_brooch"));            break;
+                case "tougher_times":           console.log(findItem("tougher_times"));           break;
+                case "tri_tip_dagger":          console.log(findItem("tri_tip_dagger"));          break;
+                case "armor_piercing_rounds":   console.log(findItem("armor_piercing_rounds"));   break;
+                case "lens_makers_glasses":     console.log(findItem("lens_makers_glasses"));     break;
+                case "crowbar":                 console.log(findItem("crowbar"));                 break;
+                case "bundle_of_fireworks":     console.log(findItem("bundle_of_fireworks"));     break;
+                case "bison_steak":             console.log(findItem("bison_steak"));             break;
+                case "delicate_watch":          console.log(findItem("delicate_watch"));          break;
+                case "roll_of_pennies":         console.log(findItem("roll_of_pennies"));         break;
+                case "cautious_slug":           console.log(findItem("cautious_slug"));           break;
+                case "power_elixir":            console.log(findItem("power_elixir"));            break;
+
+                default: console.log("dsfsdsd");
+            }
+      })
+
+}
+
+function findItem(itemID) {
+    for(i = 0; i < items.length; i++) {
+        if(items[i].itemID == itemID) {
+            return items[i].itemName;
+        }
+    }
+}
+
 function updateStats() {
 
+    console.log(character_health_display.innerHTML);
 
-      character_type_display.innerText    = CharacterID.type;
-      character_health_display.innerHTML  = "Health: " + (CharacterID.health + 1);
-      character_damage_display.innerText  = "Damage: " + (CharacterID.damage + 1);
-      character_speed_display.innerText   = "Speed: " +  (CharacterID.movement_speed + 1); + " m/s";
-      character_armor_display.innerText   = "Armor: " + (CharacterID.armor + 1);
+    character_health_display.innerHTML  = (CharacterID.health = CharacterID.health + 5);
+    
+    character_damage_display.innerText  = "Damage: " + JSON.stringify(CharacterID.damage);
+    character_speed_display.innerText   = "Speed: " + JSON.stringify(CharacterID.movement_speed) + " m/s";
+    character_armor_display.innerText   = "Armor: " + JSON.stringify(CharacterID.armor);
 }
