@@ -118,22 +118,22 @@ function itemDetection() {
             switch(item.id) {
                 case "debug":   console.log("debug");   break;
 
-                case "repulsion_armor_plate":   console.log(findItem("repulsion_armor_plate"));   break;
-                case "mocha":                   console.log(findItem("mocha"));                   break;
-                case "topaz_brooch":            console.log(findItem("topaz_brooch"));            break;
-                case "tougher_times":           console.log(findItem("tougher_times"));           break;
-                case "tri_tip_dagger":          console.log(findItem("tri_tip_dagger"));          break;
-                case "armor_piercing_rounds":   console.log(findItem("armor_piercing_rounds"));   break;
-                case "lens_makers_glasses":     console.log(findItem("lens_makers_glasses"));     break;
-                case "crowbar":                 console.log(findItem("crowbar"));                 break;
-                case "bundle_of_fireworks":     console.log(findItem("bundle_of_fireworks"));     break;
-                case "bison_steak":             console.log(findItem("bison_steak"));             break;
-                case "delicate_watch":          console.log(findItem("delicate_watch"));          break;
-                case "roll_of_pennies":         console.log(findItem("roll_of_pennies"));         break;
-                case "cautious_slug":           console.log(findItem("cautious_slug"));           break;
-                case "power_elixir":            console.log(findItem("power_elixir"));            break;
+                case "repulsion_armor_plate":   console.log(findItem(item.id));   break;
+                case "mocha":                   console.log(findItem(item.id));   break;
+                case "topaz_brooch":            console.log(findItem(item.id));   break;
+                case "tougher_times":           console.log(findItem(item.id));   break;
+                case "tri_tip_dagger":          console.log(findItem(item.id));   break;
+                case "armor_piercing_rounds":   console.log(findItem(item.id));   break;
+                case "lens_makers_glasses":     console.log(findItem(item.id));   break;
+                case "crowbar":                 console.log(findItem(item.id));   break;
+                case "bundle_of_fireworks":     console.log(findItem(item.id));   break;
+                case "bison_steak":             console.log(findItem(item.id));   break;
+                case "delicate_watch":          console.log(findItem(item.id));   break;
+                case "roll_of_pennies":         console.log(findItem(item.id));   break;
+                case "cautious_slug":           console.log(findItem(item.id));   break;
+                case "power_elixir":            console.log(findItem(item.id));   break;
 
-                default: console.log("dsfsdsd");
+                default: console.log("Unknown Item");
             }
       })
 
