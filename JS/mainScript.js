@@ -14,6 +14,16 @@ character_input.onchange = defaultStats;
 
 ////////////////////////////////////////////////////////////////////
 
+var healthModifier = 1;
+
+function defaultModifiers() {
+    healthModifier = 1;
+}
+
+defaultModifiers();
+
+////////////////////////////////////////////////////////////////////
+
 const site_items = document.getElementById("site_items");
 
 generateItems();
@@ -91,7 +101,7 @@ function getCharacterID() {
 
 function defaultStats() {
 
-      let CharacterID = getCharacterID()
+      let CharacterID = getCharacterID();
 
       character_name_display.innerText    = CharacterID.name;
       character_type_display.innerText    = CharacterID.type;
@@ -113,30 +123,76 @@ function itemDetection() {
 
     console.clear();
 
+    defaultModifiers();
+
     items_in_inventory.forEach(item => {
 
-            switch(item.id) {
-                case "debug":   console.log("debug");   break;
+        switch(item.id) {
+            case "debug":   console.log("debug");   break;
 
-                case "repulsion_armor_plate":   console.log(findItem(item.id));   break;
-                case "mocha":                   console.log(findItem(item.id));   break;
-                case "topaz_brooch":            console.log(findItem(item.id));   break;
-                case "tougher_times":           console.log(findItem(item.id));   break;
-                case "tri_tip_dagger":          console.log(findItem(item.id));   break;
-                case "armor_piercing_rounds":   console.log(findItem(item.id));   break;
-                case "lens_makers_glasses":     console.log(findItem(item.id));   break;
-                case "crowbar":                 console.log(findItem(item.id));   break;
-                case "bundle_of_fireworks":     console.log(findItem(item.id));   break;
-                case "bison_steak":             console.log(findItem(item.id));   break;
-                case "delicate_watch":          console.log(findItem(item.id));   break;
-                case "roll_of_pennies":         console.log(findItem(item.id));   break;
-                case "cautious_slug":           console.log(findItem(item.id));   break;
-                case "power_elixir":            console.log(findItem(item.id));   break;
+            case "repulsion_armor_plate":   
+                console.log(findItem(item.id)); 
+                healthModifier++;   
+            break;
+            
+            case "mocha":                   
+                console.log(findItem(item.id));
+                healthModifier++;   
+            break;
 
-                default: console.log("Unknown Item");
-            }
-      })
+            case "topaz_brooch":            
+                console.log(findItem(item.id));   
+            break;
 
+            case "tougher_times":           
+                console.log(findItem(item.id));   
+            break;
+
+            case "tri_tip_dagger":          
+                console.log(findItem(item.id));   
+            break;
+
+            case "armor_piercing_rounds":   
+                console.log(findItem(item.id));   
+            break;
+
+            case "lens_makers_glasses":     
+                console.log(findItem(item.id));   
+            break;
+
+            case "crowbar":                 
+                console.log(findItem(item.id));   
+            break;
+
+            case "bundle_of_fireworks":     
+                console.log(findItem(item.id));   
+            break;
+
+            case "bison_steak":             
+                console.log(findItem(item.id));   
+            break;
+
+            case "delicate_watch":          
+                console.log(findItem(item.id));   
+            break;
+
+            case "roll_of_pennies":         
+                console.log(findItem(item.id));   
+            break;
+
+            case "cautious_slug":           
+                console.log(findItem(item.id));   
+            break;
+
+            case "power_elixir":            
+                console.log(findItem(item.id));   
+            break;
+
+            default: console.log("Unknown Item");
+        }
+    })
+    
+    updateStats();
 }
 
 function findItem(itemID) {
@@ -149,9 +205,11 @@ function findItem(itemID) {
 
 function updateStats() {
 
-    console.log(character_health_display.innerHTML);
+    let CharacterID = getCharacterID();
 
-    character_health_display.innerHTML  = (CharacterID.health = CharacterID.health + 5);
+    console.log(healthModifier);
+
+    character_health_display.innerHTML  = CharacterID.health * healthModifier;
     
     character_damage_display.innerText  = "Damage: " + JSON.stringify(CharacterID.damage);
     character_speed_display.innerText   = "Speed: " + JSON.stringify(CharacterID.movement_speed) + " m/s";

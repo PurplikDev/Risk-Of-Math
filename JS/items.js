@@ -103,8 +103,111 @@ const items = [
             itemID: "power_elixir",
             itemName: "Power Elixir",
             itemIcon: "power_elixir.png",
-            itemRarity: "common",
+            itemRarity: "common"
+      },
 
-            on_death: ""
+      {
+            itemID: "pauls_goat_hoof",
+            itemName: "Paul's Goat Hoof",
+            itemIcon: "pauls_goat_hoof.png",
+            itemRarity: "common"
+      },
+
+      {
+            itemID: "gasoline",
+            itemName: "Gasoline",
+            itemIcon: "gasoline.png",
+            itemRarity: "common"
+      },
+
+      {
+            itemID: "medkit",
+            itemName: "Medkit",
+            itemIcon: "medkit.png",
+            itemRarity: "common"
+      },
+
+      {
+            itemID: "bustling_fungus",
+            itemName: "Bustling Fungus",
+            itemIcon: "bustling_fungus.png",
+            itemRarity: "common"
+      },
+
+      {
+            itemID: "focus_crystal",
+            itemName: "Focus Crystal",
+            itemIcon: "focus_crystal.png",
+            itemRarity: "common"
+      },
+
+      {
+            itemID: "oddly_shaped_opal",
+            itemName: "Oddly Shaped Opal",
+            itemIcon: "oddly_shaped_opal.png",
+            itemRarity: "common"
+      },
+
+      {
+            itemID: "personal_shield_generator",
+            itemName: "Personal Shield Generator",
+            itemIcon: "personal_shield_generator.png",
+            itemRarity: "common"
+      },
+
+      {
+            itemID: "backup_magazine",
+            itemName: "Backup Magazine",
+            itemIcon: "backup_magazine.png",
+            itemRarity: "common"
+      },
+
+      {
+            itemID: "energy_drink",
+            itemName: "Energy Drink",
+            itemIcon: "energy_drink.png",
+            itemRarity: "common"
+      },
+
+      {
+            itemID: "sticky_bomb",
+            itemName: "Sticky Bomb",
+            itemIcon: "sticky_bomb.png",
+            itemRarity: "common"
+      },
+
+      {
+            itemID: "stun_grenade",
+            itemName: "Stun Grenate",
+            itemIcon: "stun_grenade.png",
+            itemRarity: "common"
+      },
+
+      {
+            itemID: "soldiers_syringe",
+            itemName: "Soldier's Syringe",
+            itemIcon: "soldiers_syringe.png",
+            itemRarity: "common"
+      },
+
+      {
+            itemID: "monster_tooth",
+            itemName: "Monster Tooth",
+            itemIcon: "monster_tooth.png",
+            itemRarity: "common"
+      },
+
+      {
+            itemID: "rusted_key",
+            itemName: "Rusted Key",
+            itemIcon: "rusted_key.png",
+            itemRarity: "common"
+      },
+
+      {
+            itemID: "warbanner",
+            itemName: "Warbanner",
+            itemIcon: "warbanner.png",
+            itemRarity: "common"
       }
 ]
