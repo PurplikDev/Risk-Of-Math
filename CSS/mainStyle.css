@@ -32,3 +32,10 @@
       height: 80px;
       object-fit: cover;
 }
+
+.item-amount-input {
+      width: 70px;
+      position: relative;
+
+      background-color: rgba(21, 21, 21, 0.25);
+}
