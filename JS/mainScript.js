@@ -40,8 +40,21 @@ function generateItems() {
                 new_item_image.classList.add(items[i].itemID);
                 new_item_image.src = "itemIcons/" + items[i].itemRarity + "/" + items[i].itemIcon;
 
-          site_items.appendChild(new_item);
-          new_item.appendChild(new_item_image);
+            const new_number_input_div = document.createElement("div");
+                new_number_input_div.classList.add("item-amount-input-div");
+
+            const new_number_input = document.createElement("input");
+                new_number_input.type = "number";  
+                new_number_input.setAttribute("id", items[i].itemID + "-item-amount");
+                new_number_input.classList.add("item-amount-input");
+                new_number_input.setAttribute("min", "1");
+                new_number_input.setAttribute("value", "1");
+                
+
+        site_items.appendChild(new_item);
+        new_item.appendChild(new_item_image);
+        new_item.appendChild(new_number_input_div);
+        new_number_input_div.appendChild(new_number_input);
     }
 }
 
@@ -131,8 +144,8 @@ function itemDetection() {
             case "debug":   console.log("debug");   break;
 
             case "repulsion_armor_plate":   
-                console.log(findItem(item.id)); 
-                healthModifier++;   
+                console.log(findItem(item.id));
+                healthModifier = healthModifier * document.getElementById(item.id + "-item-amount").value;   
             break;
             
             case "mocha":                   

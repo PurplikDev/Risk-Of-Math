@@ -21,6 +21,8 @@
       
       margin: 5px;
       cursor: move;
+
+      position: relative;
 }
 
 .moving {
@@ -33,9 +35,17 @@
       object-fit: cover;
 }
 
-.item-amount-input {
-      width: 70px;
-      position: relative;
-
-      background-color: rgba(21, 21, 21, 0.25);
+.item-amount-input-div {
+      position: absolute;
+      top: 52.5px;
+      left: 52.5px;
 }
+
+.item-amount-input {
+      width: 20px;
+      background-color: rgba(21, 21, 21, 0.25);
+      height: 20px;
+      color: white;
+      text-align: right;
+}
+
