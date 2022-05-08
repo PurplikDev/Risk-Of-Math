@@ -8,16 +8,18 @@ const character_damage_display      = document.getElementById("character-damage"
 const character_speed_display       = document.getElementById("character-speed");
 const character_armor_display       = document.getElementById("character-armor");
 
+const player_level = document.getElementById("player-level");
+
 ////////////////////////////////////////////////////////////////////
 
 character_input.onchange = defaultStats;
 
 ////////////////////////////////////////////////////////////////////
 
-var healthModifier = 1;
+var healthModifier = 2;
 
 function defaultModifiers() {
-    healthModifier = 1;
+    healthModifier = 2;
 }
 
 defaultModifiers();
@@ -49,6 +51,7 @@ function generateItems() {
                 new_number_input.classList.add("item-amount-input");
                 new_number_input.setAttribute("min", "1");
                 new_number_input.setAttribute("value", "1");
+                new_number_input.setAttribute("onchange", "itemDetection()");
                 
 
         site_items.appendChild(new_item);

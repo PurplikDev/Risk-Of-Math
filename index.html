@@ -36,15 +36,8 @@
             <h1 id="character-name"></h1>
             <hr class="character-stats-hr">
             <img id="character_image">
+            <h3>Player Level: <input id="player-level" type="number" min="1" value="1"></h3>
             <h2 id="character-type"></h2>
-            <h3 id="character-health"></h3>
-            <h3 id="character-damage"></h3>
-            <h3 id="character-speed"></h3>
-            <h3 id="character-armor"></h3>
-      </div>
-
-      <div>
-            <h2 id="bleed-chance"></h2>
             <h3 id="character-health"></h3>
             <h3 id="character-damage"></h3>
             <h3 id="character-speed"></h3>
@@ -72,7 +65,8 @@
       <script src="JS/mainScript.js"></script>
       
       <script>
-            defaultStats()
+            defaultStats();
+            const item_amount_inputs = document.querySelectorAll(".item-amount-input");
       </script>
 </body>
 </html>
