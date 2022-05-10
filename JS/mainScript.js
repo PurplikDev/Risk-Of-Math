@@ -6,20 +6,30 @@ const character_image_display       = document.getElementById("character_image")
 const character_health_display      = document.getElementById("character-health");
 const character_damage_display      = document.getElementById("character-damage");
 const character_speed_display       = document.getElementById("character-speed");
+const character_sprint_display      = document.getElementById("character-sprint");
 const character_armor_display       = document.getElementById("character-armor");
 
-const player_level = document.getElementById("player-level");
+const player_level_input = document.getElementById("player-level");
 
 ////////////////////////////////////////////////////////////////////
 
 character_input.onchange = defaultStats;
+player_level_input.onchange = defaultStats;
 
 ////////////////////////////////////////////////////////////////////
 
-var healthModifier = 2;
+var finalPlayerHealth = 0;
+var finalPlayerDamage = 0;
+var finalPlayerNormalSpeed = 0;
+
+var healthModifier = 1;
+var normalSpeedModifier = 1;
+var sprintSpeedModifier = 1.45;
 
 function defaultModifiers() {
-    healthModifier = 2;
+    healthModifier = 1;
+    normalSpeedModifier = 1;
+    sprintModifier = 1.45;
 }
 
 defaultModifiers();
@@ -115,19 +125,6 @@ function getCharacterID() {
 
 }
 
-function defaultStats() {
-
-      let CharacterID = getCharacterID();
-
-      character_name_display.innerText    = CharacterID.name;
-      character_type_display.innerText    = CharacterID.type;
-      character_image_display.src         = "characterIcons/" + CharacterID.name + ".png" //I have to do this monstrosity be cause just CharacterID would use the object, not the ID/word itself
-      character_health_display.innerHTML  = CharacterID.health;
-      character_damage_display.innerText  = "Damage: " + JSON.stringify(CharacterID.damage);
-      character_speed_display.innerText   = "Speed: " + JSON.stringify(CharacterID.movement_speed) + " m/s";
-      character_armor_display.innerText   = "Armor: " + JSON.stringify(CharacterID.armor);
-}
-
 ////////////////////////////////////////////////////////////////////
 
 function itemDetection() {
@@ -152,8 +149,7 @@ function itemDetection() {
             break;
             
             case "mocha":                   
-                console.log(findItem(item.id));
-                healthModifier++;   
+                console.log(findItem(item.id)); 
             break;
 
             case "topaz_brooch":            
@@ -204,11 +200,73 @@ function itemDetection() {
                 console.log(findItem(item.id));   
             break;
 
+            case "pauls_goat_hoof":        
+                console.log(findItem(item.id));
+                normalSpeedModifier = normalSpeedModifier + (0.14 * parseInt(document.getElementById(item.id + "-item-amount").value));
+            break;
+
+            case "gasoline":            
+                console.log(findItem(item.id));   
+            break;
+
+            case "medkit":            
+                console.log(findItem(item.id));   
+            break;
+            
+            case "bustling_fungus":            
+                console.log(findItem(item.id));   
+            break;
+
+            case "focus_crystal":            
+                console.log(findItem(item.id));   
+            break;
+
+            case "oddly_shaped_opal":            
+                console.log(findItem(item.id));   
+            break;
+
+            case "personal_shield_generator":            
+                console.log(findItem(item.id));   
+            break;
+
+            case "backup_magazine":            
+                console.log(findItem(item.id));   
+            break;
+
+            case "energy_drink":            
+                console.log(findItem(item.id));
+                sprintModifier = sprintModifier + (0.25 * parseInt(document.getElementById(item.id + "-item-amount").value));
+            break;
+
+            case "sticky_bomb":            
+                console.log(findItem(item.id));   
+            break;
+
+            case "stun_grenade":            
+                console.log(findItem(item.id));   
+            break;
+
+            case "soldiers_syringe":            
+                console.log(findItem(item.id));   
+            break;
+
+            case "monster_tooth":            
+                console.log(findItem(item.id));   
+            break;
+
+            case "rusted_key":            
+                console.log(findItem(item.id));   
+            break;
+
+            case "warbanner":            
+                console.log(findItem(item.id));   
+            break;
+
             default: console.log("Unknown Item");
         }
     })
     
-    updateStats();
+    defaultStats();
 }
 
 function findItem(itemID) {
@@ -219,15 +277,41 @@ function findItem(itemID) {
     }
 }
 
-function updateStats() {
+function defaultStats() {
 
     let CharacterID = getCharacterID();
 
-    console.log(healthModifier);
+    calculateStats(CharacterID);
 
-    character_health_display.innerHTML  = CharacterID.health * healthModifier;
-    
-    character_damage_display.innerText  = "Damage: " + JSON.stringify(CharacterID.damage);
-    character_speed_display.innerText   = "Speed: " + JSON.stringify(CharacterID.movement_speed) + " m/s";
+    character_name_display.innerText    = CharacterID.name;
+    character_type_display.innerText    = CharacterID.type;
+    character_image_display.src         = "characterIcons/" + CharacterID.name + ".png" //I have to do this monstrosity be cause just CharacterID would use the object, not the ID/word itself
+    character_health_display.innerHTML  = "Health: " + finalPlayerHealth;
+    character_damage_display.innerText  = "Damage: " + finalPlayerDamage;
+    character_speed_display.innerText   = "Normal Speed: " + finalPlayerNormalSpeed + " m/s";
+    character_sprint_display.innerText  = "Sprinting Speed: " + finalPlayerSprintSpeed + " m/s";
     character_armor_display.innerText   = "Armor: " + JSON.stringify(CharacterID.armor);
+}
+
+function calculateStats(CharacterID) {
+
+    var player_level = player_level_input.value - 1;
+
+    if(player_level > 0) {
+        finalPlayerHealth = CharacterID.health + (CharacterID.health_increase * player_level);
+        finalPlayerDamage = CharacterID.damage + (CharacterID.damage_increase * player_level);
+    } else {
+        finalPlayerHealth = CharacterID.health;
+        finalPlayerDamage = CharacterID.damage;
+    }
+    
+    finalPlayerHealth = Math.round(finalPlayerHealth * 100) / 100;
+
+    finalPlayerDamage = Math.round(finalPlayerDamage * 100) / 100;
+
+    finalPlayerNormalSpeed = CharacterID.movement_speed * normalSpeedModifier;
+    finalPlayerNormalSpeed = Math.round(finalPlayerNormalSpeed * 100) / 100;
+
+    finalPlayerSprintSpeed = finalPlayerNormalSpeed * sprintModifier;
+    finalPlayerSprintSpeed = Math.round(finalPlayerSprintSpeed * 100) / 100;
 }

@@ -3,23 +3,14 @@ const items = [
             itemID: "repulsion_armor_plate",
             itemName: "Repulsion Armor Plate",
             itemIcon: "repulsion_armor_plate.png",
-            itemRarity: "common",
-
-            stats: {
-                  armor: 5
-            }
+            itemRarity: "common"
       },
 
       {
             itemID: "mocha",
             itemName: "Mocha",
             itemIcon: "mocha.png",
-            itemRarity: "common",
-
-            stats: {
-                  movement_speed: 0.07,
-                  attack_speed: 0.075
-            }
+            itemRarity: "common"
       },
 
       {

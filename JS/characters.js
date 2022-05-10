@@ -6,7 +6,11 @@ const commando = {
       damage: 12,
       armor: 0,
       movement_speed: 7,
-      jumps: 1
+      jumps: 1,
+
+      health_increase: 33,
+      health_regen_increase: 0.2,
+      damage_increase: 2.4
 }
 
 const huntress = {
@@ -17,7 +21,11 @@ const huntress = {
       damage: 12,
       armor: 0,
       movement_speed: 7,
-      jumps: 1
+      jumps: 1,
+
+      health_increase: 27,
+      health_regen_increase: 0.2,
+      damage_increase: 2.4
 }
 
 const bandit = {
@@ -28,7 +36,11 @@ const bandit = {
       damage: 12,
       armor: 0,
       movement_speed: 7,
-      jumps: 1
+      jumps: 1,
+
+      health_increase: 33,
+      health_regen_increase: 0.2,
+      damage_increase: 2.4
 }
 
 const mult = {
@@ -39,7 +51,11 @@ const mult = {
       damage: 11,
       armor: 12,
       movement_speed: 7,
-      jumps: 1
+      jumps: 1,
+
+      health_increase: 60,
+      health_regen_increase: 0.2,
+      damage_increase: 2.2
 }
 
 const engineer = {
@@ -50,7 +66,11 @@ const engineer = {
       damage: 14,
       armor: 0,
       movement_speed: 7,
-      jumps: 1
+      jumps: 1,
+
+      health_increase: 39,
+      health_regen_increase: 0.2,
+      damage_increase: 2.8
 }
 
 const artificer = {
@@ -61,7 +81,11 @@ const artificer = {
       damage: 12,
       armor: 0,
       movement_speed: 7,
-      jumps: 1
+      jumps: 1,
+
+      health_increase: 33,
+      health_regen_increase: 0.2,
+      damage_increase: 2.4
 }
 
 const mercenary = {
@@ -72,7 +96,11 @@ const mercenary = {
       damage: 20,
       armor: 0,
       movement_speed: 7,
-      jumps: 2
+      jumps: 2,
+
+      health_increase: 33,
+      health_regen_increase: 0.2,
+      damage_increase: 2.4
 }
 
 const rex = {
@@ -83,7 +111,11 @@ const rex = {
       damage: 12,
       armor: 20,
       movement_speed: 7,
-      jumps: 1
+      jumps: 1,
+
+      health_increase: 39,
+      health_regen_increase: 0.2,
+      damage_increase: 2.4
 }
 
 const loader = {
@@ -94,7 +126,11 @@ const loader = {
       damage: 12,
       armor: 20,
       movement_speed: 7,
-      jumps: 1
+      jumps: 1,
+
+      health_increase: 48,
+      health_regen_increase: 0.5,
+      damage_increase: 2.4
 }
 
 const acrid = {
@@ -105,10 +141,14 @@ const acrid = {
       damage: 15,
       armor: 20,
       movement_speed: 7,
-      jumps: 1
+      jumps: 1,
+
+      health_increase: 48,
+      health_regen_increase: 0.5,
+      damage_increase: 3
 }
 
-const captain= {
+const captain = {
       name: "Captain",
       type: "Ranged",
       health: 110,
@@ -116,7 +156,11 @@ const captain= {
       damage: 12,
       armor: 0,
       movement_speed: 7,
-      jumps: 1
+      jumps: 1,
+
+      health_increase: 33,
+      health_regen_increase: 0.2,
+      damage_increase: 2.4
 }
 
 const railgunner = {
@@ -127,7 +171,11 @@ const railgunner = {
       damage: 12,
       armor: 0,
       movement_speed: 7,
-      jumps: 1
+      jumps: 1,
+
+      health_increase: 33,
+      health_regen_increase: 0.2,
+      damage_increase: 2.4
 }
 
 const voidfiend = {
@@ -138,7 +186,11 @@ const voidfiend = {
       damage: 12,
       armor: 0,
       movement_speed: 7,
-      jumps: 1
+      jumps: 1,
+
+      health_increase: 33,
+      health_regen_increase: 0.2,
+      damage_increase: 2.4
 }
 
 const heretic = {
@@ -149,7 +201,11 @@ const heretic = {
       damage: 18,
       armor: 0,
       movement_speed: 8,
-      jumps: 1
+      jumps: 1,
+
+      health_increase: 132,
+      health_regen_increase: -1.2,
+      damage_increase: 2.8
 }
 
 const mithrix = {
@@ -160,7 +216,11 @@ const mithrix = {
       damage: 16,
       armor: 20,
       movement_speed: 15,
-      jumps: 1
+      jumps: 1,
+
+      health_increase: 300,
+      health_regen_increase: 0,
+      damage_increase: 3.2
 }
 
 const scavenger = {
@@ -171,5 +231,9 @@ const scavenger = {
       damage: 4,
       armor: 20,
       movement_speed: 3,
-      jumps: 1
+      jumps: 1,
+
+      health_increase: 1140,
+      health_regen_increase: 0.4,
+      damage_increase: 0.8
 }
