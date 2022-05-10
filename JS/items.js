@@ -200,5 +200,28 @@ const items = [
             itemName: "Warbanner",
             itemIcon: "warbanner.png",
             itemRarity: "common"
+      },
+
+
+
+      {
+            itemID: "atg_missile_mk_1",
+            itemName: "AtG Missile Mk. 1",
+            itemIcon: "atg_missile_mk_1.png",
+            itemRarity: "uncommon"
+      },
+
+      {
+            itemID: "bandolier",
+            itemName: "Bandolier",
+            itemIcon: "bandolier.png",
+            itemRarity: "uncommon"
+      },
+
+      {
+            itemID: "berzerkers_pauldron",
+            itemName: "Berzerker's Pauldron",
+            itemIcon: "berzerkers_pauldron.png",
+            itemRarity: "uncommon"
       }
 ]

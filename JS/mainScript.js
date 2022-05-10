@@ -306,7 +306,6 @@ function calculateStats(CharacterID) {
     }
     
     finalPlayerHealth = Math.round(finalPlayerHealth * 100) / 100;
-
     finalPlayerDamage = Math.round(finalPlayerDamage * 100) / 100;
 
     finalPlayerNormalSpeed = CharacterID.movement_speed * normalSpeedModifier;
