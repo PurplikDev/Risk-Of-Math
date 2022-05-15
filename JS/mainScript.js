@@ -18,18 +18,18 @@ player_level_input.onchange = defaultStats;
 
 ////////////////////////////////////////////////////////////////////
 
-var finalPlayerHealth = 0;
-var finalPlayerDamage = 0;
-var finalPlayerNormalSpeed = 0;
-
-var healthModifier = 1;
-var normalSpeedModifier = 1;
-var sprintSpeedModifier = 1.45;
-
 function defaultModifiers() {
     healthModifier = 1;
     normalSpeedModifier = 1;
     sprintModifier = 1.45;
+    attackSpeed = 1;
+
+    onHitCritChance = 1;
+    onHitBleedChance = 0;
+
+    onKillBarrier = 0;
+
+    onHitEnemyDamageBlock = 0;
 }
 
 defaultModifiers();
@@ -144,24 +144,24 @@ function itemDetection() {
             case "debug":   console.log("debug");   break;
 
             case "repulsion_armor_plate":   
-                console.log(findItem(item.id));
-                healthModifier = healthModifier * document.getElementById(item.id + "-item-amount").value;   
+
             break;
             
             case "mocha":                   
-                console.log(findItem(item.id)); 
+                normalSpeedModifier = normalSpeedModifier + (0.07 * parseInt(document.getElementById(item.id + "-item-amount").value));
+                attackSpeed = attackSpeed + (0.075 * parseInt(document.getElementById(item.id + "-item-amount").value));
             break;
 
             case "topaz_brooch":            
-                console.log(findItem(item.id));   
+                onKillBarrier = onKillBarrier + (15 * parseInt(document.getElementById(item.id + "-item-amount").value));   
             break;
 
             case "tougher_times":           
-                console.log(findItem(item.id));   
+                onHitEnemyDamageBlock = onHitEnemyDamageBlock + (15 * parseInt(document.getElementById(item.id + "-item-amount").value));
             break;
 
             case "tri_tip_dagger":          
-                console.log(findItem(item.id));   
+                onHitBleedChance = onHitBleedChance + (10 * parseInt(document.getElementById(item.id + "-item-amount").value));
             break;
 
             case "armor_piercing_rounds":   
@@ -169,7 +169,7 @@ function itemDetection() {
             break;
 
             case "lens_makers_glasses":     
-                console.log(findItem(item.id));   
+                onHitCritChance = onHitCritChance + (10 * parseInt(document.getElementById(item.id + "-item-amount").value)); 
             break;
 
             case "crowbar":                 
@@ -291,6 +291,13 @@ function defaultStats() {
     character_speed_display.innerText   = "Normal Speed: " + finalPlayerNormalSpeed + " m/s";
     character_sprint_display.innerText  = "Sprinting Speed: " + finalPlayerSprintSpeed + " m/s";
     character_armor_display.innerText   = "Armor: " + JSON.stringify(CharacterID.armor);
+
+    on_hit_bleed_display.innerText      = "Chance to proc bleed: " + onHitBleedChance + "%";
+    if(CharacterID != railgunner) { on_hit_crit_display.innerText = "Chance to crit: " + onHitCritChance + "%"; } else { on_hit_crit_display.innerText = "Railgunner has no Crit Chance due to dealing Critical Hits to weakspots of enemies"}
+
+    on_kill_barrier.innerText           = "On kill barrier: " + onKillBarrier;
+
+    enemy_on_hit_damage_block.innerText = "Chance to block incoming damage: " + onHitEnemyDamageBlock + "%";
 }
 
 function calculateStats(CharacterID) {
