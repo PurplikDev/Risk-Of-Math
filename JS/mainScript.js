@@ -156,8 +156,10 @@ function itemDetection() {
                 onKillBarrier = onKillBarrier + (15 * parseInt(document.getElementById(item.id + "-item-amount").value));   
             break;
 
-            case "tougher_times":           
-                onHitEnemyDamageBlock = onHitEnemyDamageBlock + (15 * parseInt(document.getElementById(item.id + "-item-amount").value));
+            case "tougher_times":      
+                amountTougherTimes = 15*parseInt(document.getElementById(item.id + "-item-amount").value);
+
+                onHitEnemyDamageBlock = (1 - (1/(amountTougherTimes+1)));
             break;
 
             case "tri_tip_dagger":          
