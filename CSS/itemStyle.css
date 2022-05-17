@@ -32,3 +32,8 @@
       background-image: url("../itemIcons/debugIcons/background.png");
       background-size: cover;
 }
+
+.missing {
+      background-image: url("../itemIcons/debugIcons/missing.png");
+      background-size: cover;
+}

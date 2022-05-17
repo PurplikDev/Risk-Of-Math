@@ -39,6 +39,7 @@
                   <h3>Player Level: <input id="player-level" type="number" min="1" value="1"></h3>
                   <h2 id="character-type"></h2>
                   <h3 id="character-health"></h3>
+                  <h3 id="character-regen"></h3>
                   <h3 id="character-damage"></h3>
                   <h3 id="character-speed"></h3>
                   <h3 id="character-sprint"></h3>
@@ -62,29 +63,29 @@
                   <h1 id="on-hit-effect-enemy">Effects on hit player</h1>
                   <br>
                   <h3 id="on-hit-damage-block-chance"></h3>
+                  <h3 id="on-hit-pennies-amount"></h3>
             </div>
       </div>
-      <h1>Inventory</h1>
-      <div class="item-list playerInventory" id="player_items">
-            
-      </div>
+      <div class="inventories">
+            <h1>Inventory</h1>
+            <div class="item-list playerInventory" id="player_items">
+                  
+            </div>
 
-
-
-      <h1>Item List</h1>
-      <div class="item-list" id="site_items">
-            <div class="draggable-item" id="debug" draggable="true">
-                  <img class="item debug" src="itemIcons/debugIcons/item.png">
-                  <div class="item-amount-input-div"><input type="number" id="debug-item-amount" class="item-amount-input" min="1" value="1"></div>
+            <h1>Item List</h1>
+            <div class="item-list" id="site_items">
+                  <div class="draggable-item" id="debug" draggable="true">
+                        <img class="item debug" src="itemIcons/debugIcons/item.png">
+                        <div class="item-amount-input-div"><input type="number" id="debug-item-amount" class="item-amount-input" min="1" value="1"></div>
+                  </div>
             </div>
       </div>
-      
 
       <script src="JS/characters.js"></script>
       <script src="JS/items.js"></script>
 
-      <script src="JS/onHitEnemyConst"></script>
-      <script src="JS/onHitPlayerConst"></script>
+      <script src="JS/onHitEnemyConst.js"></script>
+      <script src="JS/onHitPlayerConst.js"></script>
       <script src="JS/onKillPlayerConst.js"></script>
 
       <script src="JS/mainScript.js"></script>

@@ -4,6 +4,7 @@ const character_name_display        = document.getElementById("character-name");
 const character_type_display        = document.getElementById("character-type");
 const character_image_display       = document.getElementById("character_image");
 const character_health_display      = document.getElementById("character-health");
+const character_regen_display      = document.getElementById("character-regen");
 const character_damage_display      = document.getElementById("character-damage");
 const character_speed_display       = document.getElementById("character-speed");
 const character_sprint_display      = document.getElementById("character-sprint");
@@ -20,9 +21,12 @@ player_level_input.onchange = defaultStats;
 
 function defaultModifiers() {
     healthModifier = 1;
+    healthRegenModifier = 1;
     normalSpeedModifier = 1;
     sprintModifier = 1.45;
     attackSpeed = 1;
+    damageModifier = 1;
+    steakModifier = 0;
 
     onHitCritChance = 1;
     onHitBleedChance = 0;
@@ -30,6 +34,7 @@ function defaultModifiers() {
     onKillBarrier = 0;
 
     onHitEnemyDamageBlock = 0;
+    onHitPenniesOnHit = 0;
 }
 
 defaultModifiers();
@@ -144,7 +149,7 @@ function itemDetection() {
             case "debug":   console.log("debug");   break;
 
             case "repulsion_armor_plate":   
-
+                item.classList.add("missing");
             break;
             
             case "mocha":                   
@@ -157,9 +162,9 @@ function itemDetection() {
             break;
 
             case "tougher_times":      
-                amountTougherTimes = 15*parseInt(document.getElementById(item.id + "-item-amount").value);
+                amountTougherTimes = 0.15*parseInt(document.getElementById(item.id + "-item-amount").value);
 
-                onHitEnemyDamageBlock = (1 - (1/(amountTougherTimes+1)));
+                onHitEnemyDamageBlock = (1 - (1/(amountTougherTimes+1))) * 100;
             break;
 
             case "tri_tip_dagger":          
@@ -167,7 +172,7 @@ function itemDetection() {
             break;
 
             case "armor_piercing_rounds":   
-                console.log(findItem(item.id));   
+                damageModifier = damageModifier + (0.20 * parseInt(document.getElementById(item.id + "-item-amount").value));
             break;
 
             case "lens_makers_glasses":     
@@ -175,31 +180,31 @@ function itemDetection() {
             break;
 
             case "crowbar":                 
-                console.log(findItem(item.id));   
+                damageModifier = damageModifier + (0.75 * parseInt(document.getElementById(item.id + "-item-amount").value));
             break;
 
             case "bundle_of_fireworks":     
-                console.log(findItem(item.id));   
+                //Well, this item does not do much so there's not really a reason to add the stuff it does, at least for now  
             break;
 
             case "bison_steak":             
-                console.log(findItem(item.id));   
+                steakModifier = 25 * parseInt(document.getElementById(item.id + "-item-amount").value);
             break;
 
             case "delicate_watch":          
-                console.log(findItem(item.id));   
+                damageModifier = damageModifier + (0.20 * parseInt(document.getElementById(item.id + "-item-amount").value));
             break;
 
             case "roll_of_pennies":         
-                console.log(findItem(item.id));   
+                onHitPenniesOnHit = 3 * parseInt(document.getElementById(item.id + "-item-amount").value);
             break;
 
             case "cautious_slug":           
-                console.log(findItem(item.id));   
+                healthRegenModifier = 3 * parseInt(document.getElementById(item.id + "-item-amount").value);
             break;
 
             case "power_elixir":            
-                console.log(findItem(item.id));   
+                //Same deal as Bundle of Fireworks, not much reason to add the stats yet.
             break;
 
             case "pauls_goat_hoof":        
@@ -208,31 +213,31 @@ function itemDetection() {
             break;
 
             case "gasoline":            
-                console.log(findItem(item.id));   
+                item.classList.add("missing"); 
             break;
 
             case "medkit":            
-                console.log(findItem(item.id));   
+                item.classList.add("missing");
             break;
             
             case "bustling_fungus":            
-                console.log(findItem(item.id));   
+                item.classList.add("missing");
             break;
 
             case "focus_crystal":            
-                console.log(findItem(item.id));   
+                item.classList.add("missing");
             break;
 
             case "oddly_shaped_opal":            
-                console.log(findItem(item.id));   
+                item.classList.add("missing");
             break;
 
             case "personal_shield_generator":            
-                console.log(findItem(item.id));   
+                item.classList.add("missing");  
             break;
 
             case "backup_magazine":            
-                console.log(findItem(item.id));   
+                item.classList.add("missing");
             break;
 
             case "energy_drink":            
@@ -241,27 +246,27 @@ function itemDetection() {
             break;
 
             case "sticky_bomb":            
-                console.log(findItem(item.id));   
+                item.classList.add("missing"); 
             break;
 
             case "stun_grenade":            
-                console.log(findItem(item.id));   
+                item.classList.add("missing");
             break;
 
             case "soldiers_syringe":            
-                console.log(findItem(item.id));   
+                item.classList.add("missing");
             break;
 
             case "monster_tooth":            
-                console.log(findItem(item.id));   
+                item.classList.add("missing");
             break;
 
             case "rusted_key":            
-                console.log(findItem(item.id));   
+                item.classList.add("missing");
             break;
 
             case "warbanner":            
-                console.log(findItem(item.id));   
+                item.classList.add("missing");
             break;
 
             default: console.log("Unknown Item");
@@ -289,6 +294,7 @@ function defaultStats() {
     character_type_display.innerText    = CharacterID.type;
     character_image_display.src         = "characterIcons/" + CharacterID.name + ".png" //I have to do this monstrosity be cause just CharacterID would use the object, not the ID/word itself
     character_health_display.innerHTML  = "Health: " + finalPlayerHealth;
+    character_regen_display.innerHTML   = "Health Regeneration: " + finalPlayerHealthRegen + " hp/s";
     character_damage_display.innerText  = "Damage: " + finalPlayerDamage;
     character_speed_display.innerText   = "Normal Speed: " + finalPlayerNormalSpeed + " m/s";
     character_sprint_display.innerText  = "Sprinting Speed: " + finalPlayerSprintSpeed + " m/s";
@@ -299,7 +305,8 @@ function defaultStats() {
 
     on_kill_barrier.innerText           = "On kill barrier: " + onKillBarrier;
 
-    enemy_on_hit_damage_block.innerText = "Chance to block incoming damage: " + onHitEnemyDamageBlock + "%";
+    enemy_on_hit_damage_block.innerText     = "Chance to block incoming damage: " + finalPlayerHitBlock + "%";
+    enemy_on_hit_pennies_amount.innerText   = "Amount of money you recieve on hit: " + onHitPenniesOnHit;
 }
 
 function calculateStats(CharacterID) {
@@ -308,18 +315,24 @@ function calculateStats(CharacterID) {
 
     if(player_level > 0) {
         finalPlayerHealth = CharacterID.health + (CharacterID.health_increase * player_level);
+        finalPlayerHealthRegen = CharacterID.health_regen + (CharacterID.health_regen_increase * player_level);
         finalPlayerDamage = CharacterID.damage + (CharacterID.damage_increase * player_level);
     } else {
         finalPlayerHealth = CharacterID.health;
+        finalPlayerHealthRegen = CharacterID.health_regen;
         finalPlayerDamage = CharacterID.damage;
     }
+
+    finalPlayerHealthRegen = finalPlayerHealthRegen + healthRegenModifier;
     
-    finalPlayerHealth = Math.round(finalPlayerHealth * 100) / 100;
-    finalPlayerDamage = Math.round(finalPlayerDamage * 100) / 100;
+    finalPlayerHealth = (Math.round(finalPlayerHealth * 100) / 100) + steakModifier;
+    finalPlayerDamage = (Math.round((finalPlayerDamage * damageModifier) * 100) / 100);
 
     finalPlayerNormalSpeed = CharacterID.movement_speed * normalSpeedModifier;
     finalPlayerNormalSpeed = Math.round(finalPlayerNormalSpeed * 100) / 100;
 
     finalPlayerSprintSpeed = finalPlayerNormalSpeed * sprintModifier;
     finalPlayerSprintSpeed = Math.round(finalPlayerSprintSpeed * 100) / 100;
+
+    finalPlayerHitBlock = Math.round(onHitEnemyDamageBlock * 10) / 10;
 }
