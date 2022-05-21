@@ -21,20 +21,30 @@ player_level_input.onchange = defaultStats;
 
 function defaultModifiers() {
     healthModifier = 1;
-    healthRegenModifier = 1;
+    healthRegenModifier = 0;
     normalSpeedModifier = 1;
     sprintModifier = 1.45;
-    attackSpeed = 1;
+    attackSpeedModifier = 1;
     damageModifier = 1;
     steakModifier = 0;
+    playerArmorModifier = 1;
+    playerArmorFlat = 0;
+    bungusModifier = 0;
+    playerShield = 0;
 
     onHitCritChance = 1;
     onHitBleedChance = 0;
+    onHitStickyBombChance = 0;
+    onHitStunChance = 0;
 
     onKillBarrier = 0;
+    onKillGasRadius = 0;
+    onKillGasDamage = 0;
+    toothModifier = 0;
 
     onHitEnemyDamageBlock = 0;
     onHitPenniesOnHit = 0;
+    onHitMedkit = 0;
 }
 
 defaultModifiers();
@@ -134,7 +144,7 @@ function getCharacterID() {
 
 function itemDetection() {
     
-    defaultStats()
+    defaultStats();
 
     const player_items = document.getElementById("player_items");
     const items_in_inventory = player_items.querySelectorAll(".draggable-item");
@@ -149,12 +159,12 @@ function itemDetection() {
             case "debug":   console.log("debug");   break;
 
             case "repulsion_armor_plate":   
-                item.classList.add("missing");
+                playerArmorFlat += 5 * parseInt(document.getElementById(item.id + "-item-amount").value);
             break;
             
             case "mocha":                   
                 normalSpeedModifier = normalSpeedModifier + (0.07 * parseInt(document.getElementById(item.id + "-item-amount").value));
-                attackSpeed = attackSpeed + (0.075 * parseInt(document.getElementById(item.id + "-item-amount").value));
+                attackSpeedModifier = attackSpeedModifier + (0.075 * parseInt(document.getElementById(item.id + "-item-amount").value));
             break;
 
             case "topaz_brooch":            
@@ -212,32 +222,39 @@ function itemDetection() {
                 normalSpeedModifier = normalSpeedModifier + (0.14 * parseInt(document.getElementById(item.id + "-item-amount").value));
             break;
 
-            case "gasoline":            
-                item.classList.add("missing"); 
+            case "gasoline":
+                if(parseInt(document.getElementById(item.id + "-item-amount").value) <= 1) {
+                    onKillGasRadius = 12;
+                    onKillGasDamage = 150;
+                } else {
+                    onKillGasRadius = onKillGasRadius + (4 * parseInt(document.getElementById(item.id + "-item-amount").value));
+                    onKillGasDamage = onKillGasDamage + (75 * parseInt(document.getElementById(item.id + "-item-amount").value));
+                }    
+                
             break;
 
             case "medkit":            
-                item.classList.add("missing");
+                onHitMedkit = onHitMedkit + (20 * (1 + (0.05 * parseInt(document.getElementById(item.id + "-item-amount").value))));
             break;
             
             case "bustling_fungus":            
-                item.classList.add("missing");
+                bungusModifier = finalPlayerHealth * (0.045 * parseInt(document.getElementById(item.id + "-item-amount").value));
             break;
 
             case "focus_crystal":            
-                item.classList.add("missing");
+                damageModifier = damageModifier + (0.20 * parseInt(document.getElementById(item.id + "-item-amount").value));
             break;
 
             case "oddly_shaped_opal":            
-                item.classList.add("missing");
+                playerArmorFlat += 100 * parseInt(document.getElementById(item.id + "-item-amount").value);
             break;
 
             case "personal_shield_generator":            
-                item.classList.add("missing");  
+                playerShield = finalPlayerHealth * (0.08 * parseInt(document.getElementById(item.id + "-item-amount").value));
             break;
 
             case "backup_magazine":            
-                item.classList.add("missing");
+                //Same deal as Bundle of Fireworks, not much reason to add the stats yet.
             break;
 
             case "energy_drink":            
@@ -246,27 +263,21 @@ function itemDetection() {
             break;
 
             case "sticky_bomb":            
-                item.classList.add("missing"); 
+                onHitStickyBombChance = 5 * parseInt(document.getElementById(item.id + "-item-amount").value);
             break;
 
-            case "stun_grenade":            
-                item.classList.add("missing");
+            case "stun_grenade":
+                amountStun = 0.05 * parseInt(document.getElementById(item.id + "-item-amount").value);      
+                onHitStunChance = (1 - (1/(amountStun+1))) * 100;
+                onHitStunChance = Math.round(onHitStunChance * 10) / 10;
             break;
 
             case "soldiers_syringe":            
-                item.classList.add("missing");
+                attackSpeedModifier = attackSpeedModifier + (0.15 * parseInt(document.getElementById(item.id + "-item-amount").value));
             break;
 
             case "monster_tooth":            
-                item.classList.add("missing");
-            break;
-
-            case "rusted_key":            
-                item.classList.add("missing");
-            break;
-
-            case "warbanner":            
-                item.classList.add("missing");
+                toothModifier = finalPlayerHealth * (0.02 * parseInt(document.getElementById(item.id + "-item-amount").value));
             break;
 
             default: console.log("Unknown Item");
@@ -293,20 +304,25 @@ function defaultStats() {
     character_name_display.innerText    = CharacterID.name;
     character_type_display.innerText    = CharacterID.type;
     character_image_display.src         = "characterIcons/" + CharacterID.name + ".png" //I have to do this monstrosity be cause just CharacterID would use the object, not the ID/word itself
-    character_health_display.innerHTML  = "Health: " + finalPlayerHealth;
-    character_regen_display.innerHTML   = "Health Regeneration: " + finalPlayerHealthRegen + " hp/s";
+    if(playerShield != 0) {character_health_display.innerHTML  = "Health: " + finalPlayerHealth + "<BR> Shield: " + playerShield} else {character_health_display.innerHTML  = "Health: " + finalPlayerHealth;}
+    if(bungusModifier == 0) {character_regen_display.innerHTML   = "Health Regeneration: " + finalPlayerHealthRegen + " hp/s";} else {character_regen_display.innerHTML   = "Health Regeneration: " + finalPlayerHealthRegen + " hp/s <BR> Bungus Regeneration: " + bungusModifier;}
     character_damage_display.innerText  = "Damage: " + finalPlayerDamage;
     character_speed_display.innerText   = "Normal Speed: " + finalPlayerNormalSpeed + " m/s";
     character_sprint_display.innerText  = "Sprinting Speed: " + finalPlayerSprintSpeed + " m/s";
-    character_armor_display.innerText   = "Armor: " + JSON.stringify(CharacterID.armor);
+    character_armor_display.innerText   = "Armor: " + finalPlayerArmor;
 
     on_hit_bleed_display.innerText      = "Chance to proc bleed: " + onHitBleedChance + "%";
     if(CharacterID != railgunner) { on_hit_crit_display.innerText = "Chance to crit: " + onHitCritChance + "%"; } else { on_hit_crit_display.innerText = "Railgunner has no Crit Chance due to dealing Critical Hits to weakspots of enemies"}
+    on_hit_bomb_display.innerText      = "Chance to attach a sticky bomb : " + onHitStickyBombChance + "%";
+    on_hit_stun_display.innerText      = "Chance to stun an enemy : " + onHitStunChance + "%";
 
     on_kill_barrier.innerText           = "On kill barrier: " + onKillBarrier;
+    on_kill_gas.innerHTML               = "Gas ignition radius: " + onKillGasRadius + "m <BR> Gas fire damage: " + onKillGasDamage + "% <BR> Which translates to: " + finalPlayerDamage * (onKillGasDamage / 100);
+    on_kill_healing_orb.innerText       = "On kill spawns an orb that heals: " + toothModifier;
 
-    enemy_on_hit_damage_block.innerText     = "Chance to block incoming damage: " + finalPlayerHitBlock + "%";
+    enemy_on_hit_damage_block.innerText     = "Chance to block incoming damage: " + finalPlayerHitBlock + ",";
     enemy_on_hit_pennies_amount.innerText   = "Amount of money you recieve on hit: " + onHitPenniesOnHit;
+    enemy_on_hit_medkit.innerText   = "Healing from Medkit on hit: " + onHitMedkit;
 }
 
 function calculateStats(CharacterID) {
@@ -324,9 +340,12 @@ function calculateStats(CharacterID) {
     }
 
     finalPlayerHealthRegen = finalPlayerHealthRegen + healthRegenModifier;
-    
+
     finalPlayerHealth = (Math.round(finalPlayerHealth * 100) / 100) + steakModifier;
     finalPlayerDamage = (Math.round((finalPlayerDamage * damageModifier) * 100) / 100);
+
+    finalPlayerArmor = CharacterID.armor; //JS is being stupid so I have to do this weird thing
+    finalPlayerArmor = Math.round((playerArmorFlat * playerArmorModifier));
 
     finalPlayerNormalSpeed = CharacterID.movement_speed * normalSpeedModifier;
     finalPlayerNormalSpeed = Math.round(finalPlayerNormalSpeed * 100) / 100;

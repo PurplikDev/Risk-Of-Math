@@ -54,14 +54,14 @@ const items = [
             itemIcon: "crowbar.png",
             itemRarity: "common"
       },
-
+/*
       {
             itemID: "bundle_of_fireworks",
             itemName: "Bundle of Fireworks",
             itemIcon: "bundle_of_fireworks.png",
             itemRarity: "common"
       },
-
+*/
       {
             itemID: "bison_steak",
             itemName: "Bison Steak",
@@ -89,14 +89,14 @@ const items = [
             itemIcon: "cautious_slug.png",
             itemRarity: "common"
       },
-
+/*
       {
             itemID: "power_elixir",
             itemName: "Power Elixir",
             itemIcon: "power_elixir.png",
             itemRarity: "common"
       },
-
+*/
       {
             itemID: "pauls_goat_hoof",
             itemName: "Paul's Goat Hoof",
@@ -145,14 +145,14 @@ const items = [
             itemIcon: "personal_shield_generator.png",
             itemRarity: "common"
       },
-
+/*
       {
             itemID: "backup_magazine",
             itemName: "Backup Magazine",
             itemIcon: "backup_magazine.png",
             itemRarity: "common"
       },
-
+*/
       {
             itemID: "energy_drink",
             itemName: "Energy Drink",
@@ -187,7 +187,7 @@ const items = [
             itemIcon: "monster_tooth.png",
             itemRarity: "common"
       },
-
+/*
       {
             itemID: "rusted_key",
             itemName: "Rusted Key",
@@ -201,7 +201,7 @@ const items = [
             itemIcon: "warbanner.png",
             itemRarity: "common"
       },
-
+*/
 
 
       {
@@ -217,7 +217,7 @@ const items = [
             itemIcon: "bandolier.png",
             itemRarity: "uncommon"
       },
-
+      
       {
             itemID: "berzerkers_pauldron",
             itemName: "Berzerker's Pauldron",
