@@ -11,6 +11,36 @@ body {
       src: URL("../CSS/font/Bombardier-Regular.ttf") format('truetype');
 }
 
+.class-select {
+      font-size: 100px;
+      text-align: center;
+}
+
+.character-select {
+      font-size: 100px;
+      text-align: center;
+      font-family: 'IJUSTWANTTHISCRAPTOWORK';
+}
+
+#stats-left {
+      float: left;
+      width: 50%;
+}
+
+#stats-right {
+      float: right;
+      width: 50%;
+}
+
+#character_image {
+      width: 90%;
+      height: 90%;
+
+      border: 5px white solid;
+
+      margin-top: 15%;
+}
+
 .item-list {
       display: flex;
       flex-direction: row;
@@ -77,9 +107,8 @@ body {
 
 .health-number {
       position: absolute;
-
-      margin: auto;
-      padding: 13px;
+      margin-top: 482.5px;
+      margin-left: 10px;
 }
 
 #health-bar {

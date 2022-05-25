@@ -12,32 +12,44 @@
       <title>Risk of Math</title>
 </head>
 <body>
-      <label for="character-select">Select your survivor</label>      <select id="character-select" class="character-select">
-            <option id="commando"         class="select-commando        character-select-option">     Commando    </option>
-            <option id="huntress"         class="select-huntress        character-select-option">     Huntress    </option>
-            <option id="bandit"           class="select-bandit          character-select-option">     Bandit      </option>
-            <option id="mult"             class="select-mult            character-select-option">     MUL-T       </option>
-            <option id="engineer"         class="select-engineer        character-select-option">     Engineer    </option>
-            <option id="artificer"        class="select-artificer       character-select-option">     Artificer   </option>
-            <option id="mercenary"        class="select-mercenary       character-select-option">     Mercenary   </option>
-            <option id="rex"              class="select-rex             character-select-option">     Rex         </option>
-            <option id="loader"           class="select-loader          character-select-option">     Loader      </option>
-            <option id="acrid"            class="select-acrid           character-select-option">     Acrid       </option>
-            <option id="captain"          class="select-captain         character-select-option">     Captain     </option>
-            <option id="railgunner"       class="select-railgunner      character-select-option">     Railgunner  </option>
-            <option id="voidfiend"        class="select-voidfiend       character-select-option">     Void Fiend  </option>
-            <option id="heretic"          class="select-heretic         character-select-option">     Heretic     </option>
-            <option id="mithrix"          class="select-mithrix         character-select-option">     Mithrix     </option>
-            <option id="scavenger"        class="select-scavenger       character-select-option">     Scavenger   </option>
-      </select>
+      <div class="class-select">
+            <label for="character-select">Select your survivor</label>      <select id="character-select" class="character-select">
+                  <option id="commando"         class="select-commando        character-select-option">     Commando    </option>
+                  <option id="huntress"         class="select-huntress        character-select-option">     Huntress    </option>
+                  <option id="bandit"           class="select-bandit          character-select-option">     Bandit      </option>
+                  <option id="mult"             class="select-mult            character-select-option">     MUL-T       </option>
+                  <option id="engineer"         class="select-engineer        character-select-option">     Engineer    </option>
+                  <option id="artificer"        class="select-artificer       character-select-option">     Artificer   </option>
+                  <option id="mercenary"        class="select-mercenary       character-select-option">     Mercenary   </option>
+                  <option id="rex"              class="select-rex             character-select-option">     Rex         </option>
+                  <option id="loader"           class="select-loader          character-select-option">     Loader      </option>
+                  <option id="acrid"            class="select-acrid           character-select-option">     Acrid       </option>
+                  <option id="captain"          class="select-captain         character-select-option">     Captain     </option>
+                  <option id="railgunner"       class="select-railgunner      character-select-option">     Railgunner  </option>
+                  <option id="voidfiend"        class="select-voidfiend       character-select-option">     Void Fiend  </option>
+                  <option id="heretic"          class="select-heretic         character-select-option">     Heretic     </option>
+                  <option id="mithrix"          class="select-mithrix         character-select-option">     Mithrix     </option>
+                  <option id="scavenger"        class="select-scavenger       character-select-option">     Scavenger   </option>
+            </select>
+      </div>
 
       <div class="stat-display">
             <div>
-                  <h1 id="character-name"></h1>
-                  <hr class="character-stats-hr">
-                  <img id="character_image">
-                  <h3>Player Level: <input id="player-level" type="number" min="1" value="1"></h3>
-                  <h2 id="character-type"></h2>
+                  <div id="stats-left">
+                        <img id="character_image">
+                  </div>
+
+                  <div id="stats-right">
+                        <h1 id="character-name"></h1>
+                        <hr class="character-stats-hr">
+                        <h3>Player Level: <input id="player-level" type="number" min="1" value="1"></h3>
+                        <h2 id="character-type"></h2>
+                        <h3 id="character-regen"></h3>
+                        <h3 id="character-damage"></h3>
+                        <h3 id="character-speed"></h3>
+                        <h3 id="character-sprint"></h3>
+                        <h3 id="character-armor"></h3>
+                  </div>
                   <div>
                         <h3 id="character-health" class="health-number"></h3>
                         <div id="health-bar">
@@ -45,11 +57,7 @@
                         <div id="health-bar-shield"></div>
                         <div id="health-bar-perma"></div>
                   </div> </div>
-                  <h3 id="character-regen"></h3>
-                  <h3 id="character-damage"></h3>
-                  <h3 id="character-speed"></h3>
-                  <h3 id="character-sprint"></h3>
-                  <h3 id="character-armor"></h3>
+
             </div>
 
             <div>

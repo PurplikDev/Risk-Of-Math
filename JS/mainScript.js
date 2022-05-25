@@ -49,6 +49,8 @@ function defaultModifiers() {
     onHitEnemyDamageBlock = 0;
     onHitPenniesOnHit = 0;
     onHitMedkit = 0;
+
+    corrupted = false;
 }
 
 defaultModifiers();
@@ -134,7 +136,7 @@ function getCharacterID() {
             case "acrid":           return acrid;          break;
             case "captain":         return captain;        break;
             case "railgunner":      return railgunner;     break;
-            case "voidfiend":       return voidfiend;      break;
+            case "voidfiend":       corrupted = true; return voidfiend;      break;
             case "heretic":         return heretic;        break;
             case "mithrix":         return mithrix;        break;
             case "scavenger":       return scavenger;      break;
@@ -310,7 +312,8 @@ function defaultStats() {
 
     character_name_display.innerText    = CharacterID.name;
     character_type_display.innerText    = CharacterID.type;
-    character_image_display.src         = "characterIcons/" + CharacterID.name + ".png" //I have to do this monstrosity be cause just CharacterID would use the object, not the ID/word itself
+    if(CharacterID == voidfiend) {character_image_display.src = "characterIcons/voidfiend.png"} else {character_image_display.src = "characterIcons/" + CharacterID.name + ".png"}
+    //I have to do this monstrosity be cause just CharacterID would use the object, not the ID/word itself
     character_health_display.innerHTML  = finalPlayerHealth + playerShield + "/" + finalPlayerHealth;
     if(bungusModifier == 0) {character_regen_display.innerHTML   = "Health Regeneration: " + finalPlayerHealthRegen + " hp/s";} else {character_regen_display.innerHTML   = "Health Regeneration: " + finalPlayerHealthRegen + " hp/s <BR> Bungus Regeneration: " + bungusModifier;}
     character_damage_display.innerText  = "Damage: " + finalPlayerDamage;
@@ -375,4 +378,10 @@ function calculateHealthBar() {
     health_bar_health.style.width = healthPercentage+'%';
     health_bar_shield.style.width = shieldPercentage+'%';
     health_bar_perma.style.width = permaPercentage+'%';
+    
+    if(corrupted == true) {
+        health_bar_health.style.backgroundColor = '#a358b3';
+    } else {
+        health_bar_health.style.backgroundColor = '#61ad31';
+    }
 }
