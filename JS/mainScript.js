@@ -4,11 +4,15 @@ const character_name_display        = document.getElementById("character-name");
 const character_type_display        = document.getElementById("character-type");
 const character_image_display       = document.getElementById("character_image");
 const character_health_display      = document.getElementById("character-health");
-const character_regen_display      = document.getElementById("character-regen");
+const character_regen_display       = document.getElementById("character-regen");
 const character_damage_display      = document.getElementById("character-damage");
 const character_speed_display       = document.getElementById("character-speed");
 const character_sprint_display      = document.getElementById("character-sprint");
 const character_armor_display       = document.getElementById("character-armor");
+
+const health_bar_health      = document.getElementById("health-bar-health");
+const health_bar_shield      = document.getElementById("health-bar-shield");
+const health_bar_perma       = document.getElementById("health-bar-perma");
 
 const player_level_input = document.getElementById("player-level");
 
@@ -250,7 +254,7 @@ function itemDetection() {
             break;
 
             case "personal_shield_generator":            
-                playerShield = finalPlayerHealth * (0.08 * parseInt(document.getElementById(item.id + "-item-amount").value));
+                playerShield = Math.round(finalPlayerHealth * (0.08 * parseInt(document.getElementById(item.id + "-item-amount").value)));
             break;
 
             case "backup_magazine":            
@@ -285,6 +289,7 @@ function itemDetection() {
     })
     
     defaultStats();
+    calculateHealthBar();
 }
 
 function findItem(itemID) {
@@ -301,10 +306,12 @@ function defaultStats() {
 
     calculateStats(CharacterID);
 
+    calculateHealthBar();
+
     character_name_display.innerText    = CharacterID.name;
     character_type_display.innerText    = CharacterID.type;
     character_image_display.src         = "characterIcons/" + CharacterID.name + ".png" //I have to do this monstrosity be cause just CharacterID would use the object, not the ID/word itself
-    if(playerShield != 0) {character_health_display.innerHTML  = "Health: " + finalPlayerHealth + "<BR> Shield: " + playerShield} else {character_health_display.innerHTML  = "Health: " + finalPlayerHealth;}
+    character_health_display.innerHTML  = finalPlayerHealth + playerShield + "/" + finalPlayerHealth;
     if(bungusModifier == 0) {character_regen_display.innerHTML   = "Health Regeneration: " + finalPlayerHealthRegen + " hp/s";} else {character_regen_display.innerHTML   = "Health Regeneration: " + finalPlayerHealthRegen + " hp/s <BR> Bungus Regeneration: " + bungusModifier;}
     character_damage_display.innerText  = "Damage: " + finalPlayerDamage;
     character_speed_display.innerText   = "Normal Speed: " + finalPlayerNormalSpeed + " m/s";
@@ -341,7 +348,7 @@ function calculateStats(CharacterID) {
 
     finalPlayerHealthRegen = finalPlayerHealthRegen + healthRegenModifier;
 
-    finalPlayerHealth = (Math.round(finalPlayerHealth * 100) / 100) + steakModifier;
+    finalPlayerHealth = Math.round(finalPlayerHealth) + steakModifier;
     finalPlayerDamage = (Math.round((finalPlayerDamage * damageModifier) * 100) / 100);
 
     finalPlayerArmor = CharacterID.armor; //JS is being stupid so I have to do this weird thing
@@ -354,4 +361,18 @@ function calculateStats(CharacterID) {
     finalPlayerSprintSpeed = Math.round(finalPlayerSprintSpeed * 100) / 100;
 
     finalPlayerHitBlock = Math.round(onHitEnemyDamageBlock * 10) / 10;
+}
+
+function calculateHealthBar() {
+    var playerHealthTotal = finalPlayerHealth + playerShield;
+    
+    oneRercentHealth = playerHealthTotal / 100;
+
+    var healthPercentage = Math.round((finalPlayerHealth/oneRercentHealth)*100)/100
+    var shieldPercentage = Math.round((playerShield/oneRercentHealth)*100)/100
+    var permaPercentage = 0;
+
+    health_bar_health.style.width = healthPercentage+'%';
+    health_bar_shield.style.width = shieldPercentage+'%';
+    health_bar_perma.style.width = permaPercentage+'%';
 }

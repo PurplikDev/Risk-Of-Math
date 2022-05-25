@@ -1,8 +1,21 @@
+body {
+      background-image: url("../otherImages/background.jpg");
+      background-size: cover;
+      color: white;
+      font-family: 'IJUSTWANTTHISCRAPTOWORK';
+      font-size: 20px;
+}
+
+@font-face {
+      font-family: 'IJUSTWANTTHISCRAPTOWORK';
+      src: URL("../CSS/font/Bombardier-Regular.ttf") format('truetype');
+}
+
 .item-list {
       display: flex;
       flex-direction: row;
       
-      border: 2.5px solid black;
+      border: 2.5px solid white;
       
       min-width: 95px;
       width: auto;
@@ -59,4 +72,35 @@
       display: flex;
       justify-content: center;
       flex-direction: column;
+      padding-left: 4.5%;
+}
+
+.health-number {
+      position: absolute;
+
+      margin: auto;
+      padding: 13px;
+}
+
+#health-bar {
+      height: 50px;
+      width: 750px;
+      border: 1px solid black;
+      display: flex;
+      flex-direction: row;
+}
+
+#health-bar-health {
+      height: 100%;
+      background-color: #61ad31;
+}
+
+#health-bar-shield {
+      height: 100%;
+      background-color: #435cb8;
+}
+
+#health-bar-perma {
+      height: 100%;
+      background-color: #212121;
 }
