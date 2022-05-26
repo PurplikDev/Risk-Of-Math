@@ -398,7 +398,7 @@ function calculateHealthBar() {
     
     oneRercentHealth = playerHealthTotal / 100;
 
-    permaDamagedHealth = (finalPlayerHealth * healthModifier) * permaDamageModifier;
+    permaDamagedHealth = ((finalPlayerHealth * healthModifier) + playerShield) * permaDamageModifier;
     permaDamagedHealthFinal = playerHealthTotal - permaDamagedHealth;
 
     var healthPercentage = Math.ceil((((finalPlayerHealth * healthModifier) * permaDamageModifier)/oneRercentHealth)*100)/100
