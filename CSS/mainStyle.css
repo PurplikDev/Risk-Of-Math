@@ -41,6 +41,15 @@ body {
       margin-top: 15%;
 }
 
+#player-level {
+      font-size: 20px;
+      background-color: rgba(0, 0, 0, 0);
+      color: white;
+      border: none;
+      width: 50px;
+      font-family: 'IJUSTWANTTHISCRAPTOWORK';
+}
+
 .item-list {
       display: flex;
       flex-direction: row;

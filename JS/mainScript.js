@@ -25,6 +25,7 @@ player_level_input.onchange = defaultStats;
 
 function defaultModifiers() {
     healthModifier = 1;
+    permaDamageModifier = 1;
     healthRegenModifier = 0;
     normalSpeedModifier = 1;
     sprintModifier = 1.45;
@@ -286,6 +287,30 @@ function itemDetection() {
                 toothModifier = finalPlayerHealth * (0.02 * parseInt(document.getElementById(item.id + "-item-amount").value));
             break;
 
+                //UNCOMMON
+
+                //LEGENDARY
+
+                //BOSS
+
+                //VOID
+
+                //LUNAR
+
+            case "stone_flux_pauldron":
+                for(i = 0; i < parseInt(document.getElementById(item.id + "-item-amount").value); i++){
+                    healthModifier = healthModifier * 2; 
+                    normalSpeedModifier = normalSpeedModifier * 0.5;
+                }
+            break;
+
+            case "shaped_glass":
+                for(i = 0; i < parseInt(document.getElementById(item.id + "-item-amount").value); i++){
+                    damageModifier = damageModifier * 2; 
+                    if(parseInt(document.getElementById(item.id + "-item-amount").value) < 128) {permaDamageModifier = permaDamageModifier * 0.5;} else {permaDamageModifier = 0}
+                }
+            break;
+
             default: console.log("Unknown Item");
         }
     })
@@ -316,7 +341,7 @@ function defaultStats() {
     character_type_display.innerText    = CharacterID.type;
     if(CharacterID == voidfiend) {character_image_display.src = "characterIcons/voidfiend.png"} else {character_image_display.src = "characterIcons/" + CharacterID.name + ".png"}
     //I have to do this monstrosity be cause just CharacterID would use the object, not the ID/word itself
-    character_health_display.innerHTML  = finalPlayerHealth + playerShield + "/" + finalPlayerHealth;
+    character_health_display.innerHTML  = Math.ceil(finalPlayerHealth * healthModifier) + playerShield + "/" + Math.ceil(finalPlayerHealth * healthModifier);
     if(bungusModifier == 0) {character_regen_display.innerHTML   = "Health Regeneration: " + finalPlayerHealthRegen + " hp/s";} else {character_regen_display.innerHTML   = "Health Regeneration: " + finalPlayerHealthRegen + " hp/s <BR> Bungus Regeneration: " + bungusModifier;}
     character_damage_display.innerText  = "Damage: " + finalPlayerDamage;
     character_speed_display.innerText   = "Normal Speed: " + finalPlayerNormalSpeed + " m/s";
@@ -353,7 +378,7 @@ function calculateStats(CharacterID) {
 
     finalPlayerHealthRegen = finalPlayerHealthRegen + healthRegenModifier;
 
-    finalPlayerHealth = Math.round(finalPlayerHealth) + steakModifier;
+    finalPlayerHealth = (Math.round(finalPlayerHealth) + steakModifier) * permaDamageModifier;
     finalPlayerDamage = (Math.round((finalPlayerDamage * damageModifier) * 100) / 100);
 
     finalPlayerArmor = CharacterID.armor; //JS is being stupid so I have to do this weird thing
@@ -369,13 +394,16 @@ function calculateStats(CharacterID) {
 }
 
 function calculateHealthBar() {
-    var playerHealthTotal = finalPlayerHealth + playerShield;
+    var playerHealthTotal = (finalPlayerHealth * healthModifier) + playerShield;
     
     oneRercentHealth = playerHealthTotal / 100;
 
-    var healthPercentage = Math.round((finalPlayerHealth/oneRercentHealth)*100)/100
+    permaDamagedHealth = (finalPlayerHealth * healthModifier) * permaDamageModifier;
+    permaDamagedHealthFinal = playerHealthTotal - permaDamagedHealth;
+
+    var healthPercentage = Math.ceil((((finalPlayerHealth * healthModifier) * permaDamageModifier)/oneRercentHealth)*100)/100
     var shieldPercentage = Math.round((playerShield/oneRercentHealth)*100)/100
-    var permaPercentage = 0;
+    var permaPercentage = Math.round((permaDamagedHealthFinal/oneRercentHealth)*100)/100;
 
     health_bar_health.style.width = healthPercentage+'%';
     health_bar_shield.style.width = shieldPercentage+'%';

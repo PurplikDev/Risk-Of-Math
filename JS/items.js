@@ -223,5 +223,28 @@ const items = [
             itemName: "Berzerker's Pauldron",
             itemIcon: "berzerkers_pauldron.png",
             itemRarity: "uncommon"
-      }
+      },
+
+
+
+/*      {
+            itemID: "light_flux_pauldron",
+            itemName: "Light Flux Pauldron",
+            itemIcon: "light_flux_pauldron.png",
+            itemRarity: "lunar"
+      },*/
+
+      {
+            itemID: "stone_flux_pauldron",
+            itemName: "Stone Flux Pauldron",
+            itemIcon: "stone_flux_pauldron.png",
+            itemRarity: "lunar"
+      },
+
+      {
+            itemID: "shaped_glass",
+            itemName: "Shaped Glass",
+            itemIcon: "shaped_glass.png",
+            itemRarity: "lunar"
+      },
 ]
