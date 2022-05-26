@@ -122,7 +122,7 @@ item_lists.forEach(item_list => {
 function getCharacterID() {
 
       let selected_character = character_input.options[character_input.selectedIndex].id;
-      
+
       switch(selected_character) {
             case "commando":        return commando;       break;
             case "huntress":        return huntress;       break;
@@ -304,6 +304,8 @@ function findItem(itemID) {
 
 function defaultStats() {
 
+    corrupted = false;
+
     let CharacterID = getCharacterID();
 
     calculateStats(CharacterID);
@@ -322,7 +324,7 @@ function defaultStats() {
     character_armor_display.innerText   = "Armor: " + finalPlayerArmor;
 
     on_hit_bleed_display.innerText      = "Chance to proc bleed: " + onHitBleedChance + "%";
-    if(CharacterID != railgunner) { on_hit_crit_display.innerText = "Chance to crit: " + onHitCritChance + "%"; } else { on_hit_crit_display.innerText = "Railgunner has no Crit Chance due to dealing Critical Hits to weakspots of enemies"}
+    if(CharacterID != railgunner) { on_hit_crit_display.innerText = "Chance to crit: " + onHitCritChance + "%"; } else { on_hit_crit_display.innerText = "100% Crit chance due to special ability"}
     on_hit_bomb_display.innerText      = "Chance to attach a sticky bomb : " + onHitStickyBombChance + "%";
     on_hit_stun_display.innerText      = "Chance to stun an enemy : " + onHitStunChance + "%";
 
