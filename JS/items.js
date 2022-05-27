@@ -227,6 +227,22 @@ const items = [
 
 
 
+      {
+            itemID: "shatterspleen",
+            itemName: "Shatterspleen",
+            itemIcon: "shatterspleen.png",
+            itemRarity: "boss"
+      },
+
+      {
+            itemID: "titanic_knurl",
+            itemName: "Titanic Knurl",
+            itemIcon: "titanic_knurl.png",
+            itemRarity: "boss"
+      },
+
+
+
 /*      {
             itemID: "light_flux_pauldron",
             itemName: "Light Flux Pauldron",

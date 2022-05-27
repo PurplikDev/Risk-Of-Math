@@ -31,7 +31,7 @@ function defaultModifiers() {
     sprintModifier = 1.45;
     attackSpeedModifier = 1;
     damageModifier = 1;
-    steakModifier = 0;
+    flatHealthModifier = 0;
     playerArmorModifier = 1;
     playerArmorFlat = 0;
     bungusModifier = 0;
@@ -205,7 +205,7 @@ function itemDetection() {
             break;
 
             case "bison_steak":             
-                steakModifier = 25 * parseInt(document.getElementById(item.id + "-item-amount").value);
+                flatHealthModifier = 25 * parseInt(document.getElementById(item.id + "-item-amount").value);
             break;
 
             case "delicate_watch":          
@@ -217,7 +217,7 @@ function itemDetection() {
             break;
 
             case "cautious_slug":           
-                healthRegenModifier = 3 * parseInt(document.getElementById(item.id + "-item-amount").value);
+                healthRegenModifier += 3 * parseInt(document.getElementById(item.id + "-item-amount").value);
             break;
 
             case "power_elixir":            
@@ -257,7 +257,7 @@ function itemDetection() {
             break;
 
             case "personal_shield_generator":            
-                playerShield = Math.round(finalPlayerHealth * (0.08 * parseInt(document.getElementById(item.id + "-item-amount").value)));
+                playerShield = Math.round((finalPlayerHealth * healthModifier) * (0.08 * parseInt(document.getElementById(item.id + "-item-amount").value)));
             break;
 
             case "backup_magazine":            
@@ -292,6 +292,15 @@ function itemDetection() {
                 //LEGENDARY
 
                 //BOSS
+
+            case "shatterspleen":            
+                onHitBleedChance = onHitCritChance;
+            break;
+
+            case "titanic_knurl":            
+                flatHealthModifier = 40 * parseInt(document.getElementById(item.id + "-item-amount").value);
+                healthRegenModifier += 1.6 * parseInt(document.getElementById(item.id + "-item-amount").value);
+            break;
 
                 //VOID
 
@@ -342,7 +351,7 @@ function defaultStats() {
     if(CharacterID == voidfiend) {character_image_display.src = "characterIcons/voidfiend.png"} else {character_image_display.src = "characterIcons/" + CharacterID.name + ".png"}
     //I have to do this monstrosity be cause just CharacterID would use the object, not the ID/word itself
     character_health_display.innerHTML  = Math.ceil(finalPlayerHealth * healthModifier) + playerShield + "/" + Math.ceil(finalPlayerHealth * healthModifier);
-    if(bungusModifier == 0) {character_regen_display.innerHTML   = "Health Regeneration: " + finalPlayerHealthRegen + " hp/s";} else {character_regen_display.innerHTML   = "Health Regeneration: " + finalPlayerHealthRegen + " hp/s <BR> Bungus Regeneration: " + bungusModifier;}
+    if(bungusModifier == 0) {character_regen_display.innerHTML   = "Health Regeneration: " + Math.round(finalPlayerHealthRegen*10)/10 + " hp/s";} else {character_regen_display.innerHTML   = "Health Regeneration: " + Math.round(finalPlayerHealthRegen*10)/10 + " hp/s <BR> Bungus Regeneration: " + bungusModifier;}
     character_damage_display.innerText  = "Damage: " + finalPlayerDamage;
     character_speed_display.innerText   = "Normal Speed: " + finalPlayerNormalSpeed + " m/s";
     character_sprint_display.innerText  = "Sprinting Speed: " + finalPlayerSprintSpeed + " m/s";
@@ -378,7 +387,7 @@ function calculateStats(CharacterID) {
 
     finalPlayerHealthRegen = finalPlayerHealthRegen + healthRegenModifier;
 
-    finalPlayerHealth = (Math.round(finalPlayerHealth) + steakModifier) * permaDamageModifier;
+    finalPlayerHealth = (Math.round(finalPlayerHealth) + flatHealthModifier) * permaDamageModifier;
     finalPlayerDamage = (Math.round((finalPlayerDamage * damageModifier) * 100) / 100);
 
     finalPlayerArmor = CharacterID.armor; //JS is being stupid so I have to do this weird thing
