@@ -1,4 +1,4 @@
-# klauzury-2022-js
+# Risk of Math
 Repository for final school JavaScript project of 2022
 
 ## Basically, this is a Calculator.
